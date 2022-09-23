@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -21,6 +22,8 @@ public class ListController {
 
     static HashMap<String, String> columnChoices = new HashMap<>();
     static HashMap<String, Object> tableChoices = new HashMap<>();
+    static HashMap<String, String> displayFields = new HashMap<>();
+    static HashMap<String, String> displayFieldsReversed = new HashMap<>();
 
     public ListController () {
         columnChoices.put("all", "All");
@@ -29,6 +32,7 @@ public class ListController {
         columnChoices.put("positionType", "Position Type");
         columnChoices.put("coreCompetency", "Skill");
 
+        tableChoices.put("all", JobData.findAll());
         tableChoices.put("employer", JobData.getAllEmployers());
         tableChoices.put("location", JobData.getAllLocations());
         tableChoices.put("positionType", JobData.getAllPositionTypes());
@@ -58,7 +62,6 @@ public class ListController {
             model.addAttribute("title", "Jobs with " + columnChoices.get(column) + ": " + value);
         }
         model.addAttribute("jobs", jobs);
-
         return "list-jobs";
     }
 }

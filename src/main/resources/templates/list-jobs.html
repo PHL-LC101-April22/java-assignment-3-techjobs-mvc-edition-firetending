@@ -7,12 +7,27 @@
 <div th:replace="fragments :: page-header"></div>
 
 <div class="container body-content">
-
     <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-
     <!-- TODO #1 - Use a loop to display job results in a table. -->
 
-</div>
+    <table th:fragment="listJobs" class="job-listing" th:each="job : ${jobs}" th:object="${job}">
+        <th:block th:fragment="jobRow (rowValue, rowTitle)" th:if="${rowValue}">
+            <tr>
+                <td th:text="${#strings.toLowerCase(rowTitle)}" class="title">Field Title</td>
+                <td th:text="${rowValue}" class="field">Job Field</td>
+            </tr>
+        </th:block>
 
+        <!-- creating rows for each field of job, passing arguments (rowValue, rowTitle)  -->
+        <!-- struggled to find a way to reference everything programmatically with loops/hashmaps,
+            but with fragments its DRYer than my original solution -->
+        <div th:replace="::jobRow (*{id},'id')" ></div>
+        <div th:replace="::jobRow (*{name},'name')"></div>
+        <div th:replace="::jobRow (*{employer},'employer')"></div>
+        <div th:replace="::jobRow (*{location},'location')"></div>
+        <div th:replace="::jobRow (*{positionType},'position type')"></div>
+        <div th:replace="::jobRow (*{coreCompetency},'skill')"></div>
+    </table>
+</div>
 </body>
 </html>
