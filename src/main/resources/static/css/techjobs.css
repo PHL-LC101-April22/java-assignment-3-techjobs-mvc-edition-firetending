@@ -14,6 +14,19 @@ td {
     vertical-align: top;
 }
 
+td.field {
+    font-style: italic;
+}
+
+td.fieldNoLink {
+    font-style: italic;
+    opacity: 0.75;
+}
+
+td.title {
+    opacity: 0.5;
+}
+
 tr:nth-child(odd) {
     background-color: #e4e4e4;
 }

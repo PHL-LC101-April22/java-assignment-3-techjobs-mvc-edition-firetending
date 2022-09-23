@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
-import static org.launchcode.techjobs.mvc.controllers.ListController.columnChoices;
+import static org.launchcode.techjobs.mvc.controllers.ListController.*;
 
 
 /**
@@ -38,6 +38,8 @@ public class SearchController {
             jobs = JobData.findByColumnAndValue(searchType, searchTerm);
             model.addAttribute("title", "Jobs with " + columnChoices.get(searchType) + ": " + searchTerm);
         }
+        model.addAttribute("lastSearchType",searchType);
+        model.addAttribute("lastSearchTerm",searchTerm);
         model.addAttribute("columns", columnChoices);
         model.addAttribute("jobs", jobs);
         return "search";

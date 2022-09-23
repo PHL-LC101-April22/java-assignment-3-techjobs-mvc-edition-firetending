@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by LaunchCode
@@ -21,7 +22,8 @@ public class ListController {
 
     static HashMap<String, String> columnChoices = new HashMap<>();
     static HashMap<String, Object> tableChoices = new HashMap<>();
-    static HashMap<String, String> tableRows = new HashMap<>();
+    static HashMap<String, String> displayFields = new HashMap<>();
+    static HashMap<String, String> displayFieldsReversed = new HashMap<>();
 
     public ListController () {
         columnChoices.put("all", "All");
