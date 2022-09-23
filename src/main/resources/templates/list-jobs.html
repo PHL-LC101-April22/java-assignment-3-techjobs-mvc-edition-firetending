@@ -11,29 +11,22 @@
     <!-- TODO #1 - Use a loop to display job results in a table. -->
 
     <table th:fragment="listJobs" class="job-listing" th:each="job : ${jobs}" th:object="${job}">
-        <th:block th:fragment="jobRow (rowValue, rowTitle, columnName)" th:if="${rowValue}">
+        <th:block th:fragment="jobRow (rowValue, rowTitle)" th:if="${rowValue}">
             <tr>
                 <td th:text="${#strings.toLowerCase(rowTitle)}" class="title">Field Title</td>
                 <td th:text="${rowValue}" class="field">Job Field</td>
-
-                <!-- display a link to list-jobs unless ID/name. couldn't find a way to make this pass TestTaskTwo -->
-<!--                <td th:if="${columnName==null}" th:text="${rowValue}" class="fieldNoLink">Job Field</td>-->
-<!--                <td th:unless="${columnName==null}" class="field">-->
-<!--                    <a th:href="@{/list/jobs(column=${columnName},value=${rowValue})}" th:text="${rowValue}">Job Field</a>-->
-<!--                </td>-->
             </tr>
         </th:block>
 
-        <!-- creating rows for each field of job, passing arguments (rowValue, rowTitle, columnName)  -->
+        <!-- creating rows for each field of job, passing arguments (rowValue, rowTitle)  -->
         <!-- struggled to find a way to reference everything programmatically with loops/hashmaps,
             but with fragments its DRYer than my original solution -->
-        <!-- columnName is only needed for generating the links, can remove otherwise -->
-        <div th:replace="::jobRow (*{id},'id',null)" ></div>
-        <div th:replace="::jobRow (*{name},'name',null)"></div>
-        <div th:replace="::jobRow (*{employer},'employer','employer')"></div>
-        <div th:replace="::jobRow (*{location},'location','location')"></div>
-        <div th:replace="::jobRow (*{positionType},'position type','positionType')"></div>
-        <div th:replace="::jobRow (*{coreCompetency},'skill','coreCompetency')"></div>
+        <div th:replace="::jobRow (*{id},'id')" ></div>
+        <div th:replace="::jobRow (*{name},'name')"></div>
+        <div th:replace="::jobRow (*{employer},'employer')"></div>
+        <div th:replace="::jobRow (*{location},'location')"></div>
+        <div th:replace="::jobRow (*{positionType},'position type')"></div>
+        <div th:replace="::jobRow (*{coreCompetency},'skill')"></div>
     </table>
 </div>
 </body>
