@@ -14,13 +14,11 @@
         <th:block th:fragment="jobRow (rowValue, rowTitle, columnName)" th:if="${rowValue}">
             <tr>
                 <td th:text="${#strings.toLowerCase(rowTitle)}" class="title">Field Title</td>
-                <td th:text="${rowValue}" class="field">Job Field</td>
-
                 <!-- display a link to list-jobs unless ID/name. couldn't find a way to make this pass TestTaskTwo -->
-<!--                <td th:if="${columnName==null}" th:text="${rowValue}" class="fieldNoLink">Job Field</td>-->
-<!--                <td th:unless="${columnName==null}" class="field">-->
-<!--                    <a th:href="@{/list/jobs(column=${columnName},value=${rowValue})}" th:text="${rowValue}">Job Field</a>-->
-<!--                </td>-->
+                <td th:if="${columnName==null}" th:text="${rowValue}" class="fieldNoLink">Job Field</td>
+                <td th:unless="${columnName==null}" class="field">
+                    <a th:href="@{/list/jobs(column=${columnName},value=${rowValue})}" th:text="${rowValue}">Job Field</a>
+                </td>
             </tr>
         </th:block>
 
